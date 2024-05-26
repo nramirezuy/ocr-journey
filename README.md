@@ -31,8 +31,8 @@ streamlit run src/seshat/app.py
 - [x] Initial setup
     - [x] Create a "hello world" streamlit app
     - [ ] Add a command to start the app
-- [ ] Explorer
-    - [ ] Images in a folder
+- [x] Explorer
+    - [x] Images in a folder
 - [ ] Processing
     - [ ] Text detectors
         - [ ] Call an external text detector tool
