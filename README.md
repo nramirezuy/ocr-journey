@@ -20,11 +20,16 @@ There must be a better way! :relaxed:
 
 ## Usage
 
+To start the web app:
+
+```sh
+streamlit run src/seshat/app.py
+```
 
 ## Roadmap
 
-- [ ] Initial setup
-    - [ ] Create a "hello world" streamlit app
+- [x] Initial setup
+    - [x] Create a "hello world" streamlit app
     - [ ] Add a command to start the app
 - [ ] Explorer
     - [ ] Images in a folder
