@@ -12,14 +12,6 @@ def load_image(path):
         return f"data:image/jpeg;base64,{encoded}"
 
 
-# WARN: this has access to all your disk drive, careful
-st.title("Configuraton")
-with st.expander(""):
-    workdir = st.text_input(
-        label="", placeholder="workdir", label_visibility="collapsed"
-    )
-
-
 def gallery(images):
     st.title("Gallery")
     if not images:
@@ -79,5 +71,6 @@ def gallery(images):
         return clicked
 
 
+workdir = st.session_state.get("config-workdir")
 images = glob.glob(f"{workdir}/*.jpeg")
 clicked = gallery(images)

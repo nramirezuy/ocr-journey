@@ -23,7 +23,7 @@ There must be a better way! :relaxed:
 To start the web app:
 
 ```sh
-streamlit run src/seshat/app.py
+streamlit run src/seshat/home.py
 ```
 
 ## Roadmap
