@@ -17,34 +17,36 @@ def gallery(images):
     if not images:
         st.warning("No images found")
 
+    page = st.session_state.get("gallery-page", 1)
     if images:
         pages = math.ceil(len(images) / 9.0)
 
-        navigation = st.columns(spec=[0.1, 0.8, 0.1])
+        if pages > 1:
+            navigation = st.columns(spec=[0.1, 0.8, 0.1])
 
-        page = st.session_state.get("gallery-page", 0)
-        with navigation[0]:
-            previous = st.button(label="<")
-            if previous:
-                page = st.session_state["gallery-page"] - 1
+            with navigation[0]:
+                previous = st.button(label="<")
+                if previous:
+                    page = st.session_state["gallery-page"] - 1
 
-        with navigation[2]:
-            next_ = st.button(label="\\>")
-            if next_:
-                page = st.session_state["gallery-page"] + 1
+            with navigation[2]:
+                next_ = st.button(label="\\>")
+                if next_:
+                    page = st.session_state["gallery-page"] + 1
 
-        with navigation[1]:
-            page = st.slider(
-                label="",
-                min_value=0,
-                max_value=pages,
-                value=max(0, min(page, pages)),
-                label_visibility="collapsed",
-                key="gallery-page",
-            )
+            with navigation[1]:
+                page = st.slider(
+                    label="",
+                    min_value=1,
+                    max_value=pages,
+                    value=max(1, min(page, pages)),
+                    label_visibility="collapsed",
+                    key="gallery-page",
+                )
 
+        min_image = max(0, page - 1)
         max_image = min(page + 9, len(images))
-        selected_images = images[page:max_image]
+        selected_images = images[min_image:max_image]
         loaded_images = [load_image(path) for path in selected_images]
         clicked = clickable_images(
             loaded_images,
