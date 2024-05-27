@@ -29,16 +29,16 @@ streamlit run src/seshat/home.py
 ## Roadmap
 
 - [x] Initial setup
-    - [x] Create a "hello world" streamlit app
-    - [ ] Add a command to start the app
+  - [x] Create a "hello world" streamlit app
+  - [ ] Add a command to start the app
 - [x] Explorer
-    - [x] Images in a folder
+  - [x] Images in a folder
 - [ ] Processing
-    - [ ] Text detectors
-        - [ ] Call an external text detector tool
-        - [ ] Segment an image (extract cropings)
+  - [ ] Text detectors
+    - [ ] Call an external text detector tool
+    - [ ] Segment an image (extract cropings)
 - [ ] Cleaning
-    - [ ] Add class to image
+  - [ ] Add class to image
 - [ ] What next?
 
 See the [open issues][open-issues] for a full list of
