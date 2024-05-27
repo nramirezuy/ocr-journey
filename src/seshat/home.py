@@ -36,7 +36,7 @@ def gallery(images):
 
             with navigation[1]:
                 page = st.slider(
-                    label="",
+                    label="page-slider",
                     min_value=1,
                     max_value=pages,
                     value=max(1, min(page, pages)),
@@ -44,8 +44,8 @@ def gallery(images):
                     key="gallery-page",
                 )
 
-        min_image = max(0, page - 1)
-        max_image = min(page + 9, len(images))
+        min_image = max(0, (page * 9) - 9)
+        max_image = min((page * 9), len(images))
         selected_images = images[min_image:max_image]
         loaded_images = [load_image(path) for path in selected_images]
         clicked = clickable_images(
@@ -74,5 +74,5 @@ def gallery(images):
 
 
 workdir = st.session_state.get("config-workdir")
-images = glob.glob(f"{workdir}/*.jpeg")
+images = sorted(glob.glob(f"{workdir}/*.jpeg") + glob.glob(f"{workdir}/*.jpg"))
 clicked = gallery(images)
