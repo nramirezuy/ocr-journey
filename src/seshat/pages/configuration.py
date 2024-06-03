@@ -1,21 +1,30 @@
+import os
+import tomllib
+
 import streamlit as st
 
 
-# For permanent state!
-def keep(key):
-    def callback():
-        st.session_state[key] = st.session_state[f"_{key}"]
-
-    return callback
+def load_config():
+    HOME = os.getenv("HOME")
+    with open(f"{HOME}/.config/seshat/config.toml", "rb") as file:
+        return tomllib.load(file)
 
 
-# WARN: this has access to all your disk drive, careful
+def disabled_text_input(name, value):
+    st.text_input(
+        label=name,
+        disabled=True,
+        value=value,
+        placeholder=name,
+    )
+    st.session_state[f"config-{name}"] = value
+
+
 st.title("Configuraton")
-workdir = st.text_input(
-    label="workdir",
-    value=st.session_state.get("config-workdir"),
-    placeholder="workdir",
-    label_visibility="collapsed",
-    key="_config-workdir",
-    on_change=keep("config-workdir"),
-)
+
+config = load_config()
+profile = st.selectbox("Choose a profile", config["profiles"].keys())
+
+
+for name in ("workdir", ):
+    disabled_text_input(name, config["profiles"][profile][name])
